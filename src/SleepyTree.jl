@@ -1,9 +1,7 @@
 module SleepyTreeModule
 
 import Base: zero, one
-import Base: +
-import Base: *
-import Base: ^ 
+import Base: +, -, *, ^
 
 #constructor
 export SleepyTree
