@@ -54,7 +54,8 @@ SleepyTree{ vars, g, tt, it}()
 end
 
 -(t1::SleepyTree, y::Number)= +(t1, -y)
--(y::Number, t1::SleepyTree)= +(y, t1*(-1))
+-(y::Number, t1::SleepyTree)= +(t1*(-1), y)
+-(t1::SleepyTree, t2::SleepyTree)= +(t1, t2*(-1))
 
 @generated function _mul(m::Tuple, vars::Int, leafs1::Tuple, coors1::NTuple{n1, T1},  y::Number) where {n1, T1}
     exs = Array{Expr}(undef, n1)
