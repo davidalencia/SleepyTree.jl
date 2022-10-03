@@ -19,10 +19,11 @@ end
     end
 end
 
-function +(t1::SleepyTree{vars, g, leafs, it}, x ) where {vars, g, leafs, it}
+function +(t1::SleepyTree{vars, g, leafs, it}, x::Number ) where {vars, g, leafs, it}
     tt = setindexsleepytree(leafs, x+_coors2value(leafs, (), 0, 1), (), 0, 1, vars, 0)
     SleepyTree{ vars, g, tt, it}()
 end
++(x::Number,  t1::SleepyTree) = +(t1, x)
 
 @generated function _sum(t1::Tuple, t2::Tuple, leafssum::Tuple , vars::Int ,it::NTuple{len, T}) where {len, T}
     exs = Array{Expr}(undef, len*3+1)
@@ -82,6 +83,7 @@ Computes the multiplication between to sleepy trees.
     
     return Expr(:block, exs...)
 end
+*( y::Number, t1::SleepyTree) = *(t1, y)
 
 """
     m = zeroleafs(leafs1, vars, Val(g), it)
