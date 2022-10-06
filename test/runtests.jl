@@ -1,6 +1,7 @@
-using SleepyTree
+include("../src/SleepyTree.jl")
+using .SleepyTreeModule
 using Test
 
-@testset "SleepyTree.jl" begin
-    # Write your tests here.
-end
+import .SleepyTreeModule.getleafs
+
+include("printing.jl")
