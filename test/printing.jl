@@ -9,7 +9,7 @@ import Base:Exception
             @testset "Float64" begin
                 x, = setvariables(1,1, Float64)
                 @test string(x) == "x₁"
-                @test string(2x) == "2.0x₁" broken=true #error en constructor
+                @test string(2x) == "2.0x₁" broken=true #error en *
                 @test string(2.1x) == "2.1x₁" broken=true #error en *
             end
             @testset "Int" begin

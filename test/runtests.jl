@@ -12,5 +12,5 @@ end
 
 @testset "SleepyTree" verbose=true begin 
     include("printing.jl")
-    #include("arithmetic.jl")
+    include("arithmetic.jl")
 end

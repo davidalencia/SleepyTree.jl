@@ -64,7 +64,13 @@ end
 
 Base.show(io::IO, p::SleepyTree{vars, g, leafs, it}) where {vars, g, leafs, it}  = begin 
     hasp=false
-    for grados in it
+    _, noncnt... = it 
+    v = _coors2value(leafs, (), 0, 1)
+    if(!iszero(v))
+        print(io, v)
+        hasp=true
+    end
+    for grados in noncnt
         for index in grados
             v = _coors2value(leafs, index, length(index), 1)
             if(!iszero(v)) 
