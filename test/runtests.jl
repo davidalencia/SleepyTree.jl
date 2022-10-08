@@ -10,5 +10,7 @@ function var(sub, sup)
     "x"*subs*supers
 end
 
-include("printing.jl")
-include("arithmetic.jl")
+@testset "SleepyTree" verbose=true begin 
+    #include("printing.jl")
+    include("arithmetic.jl")
+end

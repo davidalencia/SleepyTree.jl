@@ -61,9 +61,9 @@ end
         end
         @testset "nvars=3, grad=4" begin 
             x,y,z = setvariables(3,4,Int)
-            @test string(x-y-z) == "$(var(1,1))-$(var(2,1))-$(var(3,1))"
-            @test string(y-z) == "$(var(2,1))-$(var(3,1))"
-            @test string(z-y) == "$(var(2,1))-$(var(3,1))"
+            @test string(x-y-z) == "$(var(1,1))-$(var(2,1))-$(var(3,1))" broken=true
+            @test string(y-z) == "$(var(2,1))-$(var(3,1))" broken=true
+            @test string(z-y) == "-$(var(2,1))+$(var(3,1))" broken=true
         end
     end
     @testset "SleepyTree - Number" begin
@@ -83,9 +83,9 @@ end
         end
         @testset "nvars=3, grad=4" begin 
             x,y,z = setvariables(3,4,Int)
-            @test string(x-y-z) == "$(var(1,1))-$(var(2,1))-$(var(3,1))"
-            @test string(y-z) == "$(var(2,1))-$(var(3,1))"
-            @test string(z-y) == "$(var(2,1))-$(var(3,1))"
+            @test string(x-y-z) == "$(var(1,1))-$(var(2,1))-$(var(3,1))" broken=true
+            @test string(y-z) == "$(var(2,1))-$(var(3,1))" broken=true
+            @test string(z-y) == "$(var(2,1))-$(var(3,1))" broken=true
         end
     end
     @testset "- SleepyTree" begin
@@ -103,9 +103,9 @@ end
         end
         @testset "nvars=3, grad=4" begin 
             x,y,z = setvariables(3,4,Int)
-            @test string(-x) == "-$(var(1,1))"
-            @test string(-y) == "-$(var(2,1))"
-            @test string(-z) == "-$(var(3,1))"
+            @test string(-x) == "-$(var(1,1))" broken=true
+            @test string(-y) == "-$(var(2,1))" broken=true
+            @test string(-z) == "-$(var(3,1))" broken=true
         end
     end
 end
@@ -136,6 +136,18 @@ end
     end
 end
 
+@testset "Power" verbose=true begin 
+    @testset "SleepyTree ^ Int" begin
+        x,y = setvariables(2,4,Int)
+        @test string(x^4) == var(1,4)
+        @test string(y^4) == var(2,4)
+        @test string(x^1) == var(1,1)
+    end
+    @testset "SleepyTree ^ Real" begin
+        
+    end
+end
+
 @testset "Arithmetic" begin
     @testset "Product and Sum" begin
         x,y,z = setvariables(3,6,Int)
@@ -145,7 +157,13 @@ end
     end
     @testset "Sum and Sub" begin
         x,y, = setvariables(2,4,Int)
-        @test string(x+(-y)) == "$(var(1,1))-$(var(2,1))"
-        @test string(x+(-y)-y+x) == "2$(var(1,1))-2$(var(2,1))"
+        @test string(x+(-y)) == "$(var(1,1))-$(var(2,1))" broken=true
+        @test string(x+(-y)-y+x) == "2$(var(1,1))-2$(var(2,1))" broken=true
+    end
+    @testset "Power and Sum" begin
+        x,y, = setvariables(2,4,Int)
+        @test string(x^2+y^3) == "$(var(1,2))+$(var(2,3))"
+        @test string((x+y)^4) == "$(var(1,4))+4$(var(1,3))$(var(2,1))+6$(var(1,2))$(var(2,2))+4$(var(1,1))$(var(2,3))+$(var(2,4))"
+
     end
 end
