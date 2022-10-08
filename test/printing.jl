@@ -31,17 +31,18 @@ import Base:Exception
                 @test string(x) == "x₁"
                 @test string(y) == "x₂"
                 @test string(2y) == "2x₂" broken=true
+                @test string(x-y) == "$(var(1,1))-$(var(2,1))" broken=true
             end
         end
     end
     @testset "grad" begin
         @testset "grad=0" begin
-            # @test_throws Exception setvariables(1,0, Float64) 
+            # @test_throws Exception setvariables(1,0, Float64) # change to consturctor tests
         end
         @testset "grad=2" begin
             @testset "nvars=1" begin
-                x = setvariables(1,2, Int)
-                @test string(x*x) == "x₁²"  broken=true
+                x, = setvariables(1,2, Int)
+                @test string(x*x) == "x₁²"
             end
             @testset "nvars=2" begin
                 x,y = setvariables(2,2, Int)

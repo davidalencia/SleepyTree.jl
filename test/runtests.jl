@@ -11,6 +11,6 @@ function var(sub, sup)
 end
 
 @testset "SleepyTree" verbose=true begin 
-    #include("printing.jl")
-    include("arithmetic.jl")
+    include("printing.jl")
+    #include("arithmetic.jl")
 end

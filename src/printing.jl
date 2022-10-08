@@ -16,16 +16,15 @@ end
 
 function _coors2vars(coors, n)
     ix = 1
-    offset = 0
-    vars = ntuple(n->zero(Int), Val(n)) # cambiar por ntuple
-   for i in coors
+    vars = ntuple(n->zero(Int), Val(n))
+    for i in coors
         if i==1
             vars = (vars[1:ix-1]..., vars[ix]+1, vars[ix+1:n]...)
         else
-           ix = ix+ i -1
+            ix = ix+ i -1
             vars = (vars[1:ix-1]..., vars[ix]+1, vars[ix+1:n]...)
+        end
     end
-end
     return vars
 end
 
@@ -48,20 +47,31 @@ function coors2str(coors, n)
     s
 end
 
+"""
+Returns the coefficent (abs if needed) of a monomial and if it is negative.
+"""
+function printmono(n::Number)
+    return "($n)", false
+end
+function printmono(n::Real)
+    isnegative = n<0
+    if (isone(abs(n)))
+        return "", isnegative
+    else
+        return string(abs(n)), isnegative
+    end
+end
+
 Base.show(io::IO, p::SleepyTree{vars, g, leafs, it}) where {vars, g, leafs, it}  = begin 
-    hasp = false
+    hasp=false
     for grados in it
         for index in grados
             v = _coors2value(leafs, index, length(index), 1)
-            if !iszero(v)
-                if(hasp)
-                    print(io, "+")
-                end
-                if isone(v) && index!=()
-                    print(io, coors2str(index, vars))
-                else
-                    print(io, v,coors2str(index, vars))
-                end
+            if(!iszero(v)) 
+                coeff, isnegative = printmono(v)
+                print(io, ifelse(isnegative, "-", ifelse(hasp, "+", "")))
+                print(io, coeff)
+                print(io, coors2str(index, vars))
                 hasp=true
             end
         end
