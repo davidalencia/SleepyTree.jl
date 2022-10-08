@@ -10,7 +10,8 @@ end
 
 function superscriptify(n::Int)
     dig = reverse(digits(n))
-    join([superscript_digits[i+1] for i in dig])
+    super = join([superscript_digits[i+1] for i in dig])
+    super=="¹" ? "" : super
 end
 
 function _coors2vars(coors, n)

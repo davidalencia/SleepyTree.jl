@@ -1,6 +1,16 @@
-using SleepyTree
+include("../src/SleepyTree.jl")
+using .SleepyTreeModule
 using Test
 
-@testset "SleepyTree.jl" begin
-    # Write your tests here.
+import .SleepyTreeModule: getleafs,subscriptify, superscriptify
+
+function var(sub, sup) 
+    supers = sup==1 ? "" : superscriptify(sup)
+    subs = subscriptify(sub)
+    "x"*subs*supers
+end
+
+@testset "SleepyTree" verbose=true begin 
+    #include("printing.jl")
+    include("arithmetic.jl")
 end
