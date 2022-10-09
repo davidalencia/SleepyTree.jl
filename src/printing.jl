@@ -82,5 +82,6 @@ Base.show(io::IO, p::SleepyTree{vars, g, leafs, it}) where {vars, g, leafs, it} 
             end
         end
     end
+    print(io, ifelse(!hasp, "0", ""))
 end
 

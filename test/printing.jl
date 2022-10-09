@@ -9,14 +9,14 @@ import Base:Exception
             @testset "Float64" begin
                 x, = setvariables(1,1, Float64)
                 @test string(x) == "x₁"
-                @test string(2x) == "2.0x₁" broken=true #error en *
-                @test string(2.1x) == "2.1x₁" broken=true #error en *
+                @test string(2x) == "2.0x₁"
+                @test string(2.1x) == "2.1x₁" 
             end
             @testset "Int" begin
                 x, = setvariables(1,1, Int)
                 @test string(x) == "x₁"
-                @test string(2x) == "2x₁" broken=true #error en *
-                @test string(2.1x) == "2.1x₁" broken=true #error en *
+                @test string(2x) == "2x₁"
+                @test string(2.1x) == "2.1x₁" 
             end
         end
         @testset "nvars=2" begin
@@ -24,13 +24,13 @@ import Base:Exception
                 x,y = setvariables(2,1, Float64)
                 @test string(x) == "x₁"
                 @test string(y) == "x₂"
-                @test string(2y) == "2.0x₂" broken=true #error en *
+                @test string(2y) == "2.0x₂" 
             end
             @testset "Int" begin
                 x,y = setvariables(2,1, Int)
                 @test string(x) == "x₁"
                 @test string(y) == "x₂"
-                @test string(2y) == "2x₂" broken=true
+                @test string(2y) == "2x₂" 
                 @test string(x-y) == "$(var(1,1))-$(var(2,1))" broken=true
             end
         end
