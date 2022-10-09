@@ -57,7 +57,7 @@ end
         end
         @testset "nvars=1, grad=2" begin
             x, = setvariables(1,2,Int)
-            @test string(x-x) == "0" broken=true
+            @test string(x-x) == "0"
         end
         @testset "nvars=3, grad=4" begin 
             x,y,z = setvariables(3,4,Int)
@@ -79,7 +79,7 @@ end
         end
         @testset "nvars=1, grad=2" begin
             x, = setvariables(1,2,Int)
-            @test string(x-x) == "0" broken=true
+            @test string(x-x) == "0"
         end
         @testset "nvars=3, grad=4" begin 
             x,y,z = setvariables(3,4,Int)
