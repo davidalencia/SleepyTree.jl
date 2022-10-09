@@ -37,10 +37,10 @@ end
 end
 #_sum(getleafs(x), getleafs(y), getleafs(y), 3, ((1,), (2,), (3,)))
 
-@generated function _sumgrads(leafs1, leafs2, vars, ::Val{g}, it) where{g}
-    exs = Array{Expr}(undef, g+1)
+@generated function _sumgrads(leafs1, leafs2, vars, ::Val{g}, it) where {g}
+    exs = Array{Expr}(undef, g+2)
     exs[1] = :(s = deepcopy(leafs1))
-    for i in 1:g
+    for i in 1:(g+1)
         exs[i+1] = :(s = _sum(s, leafs2, s, vars, it[$i]))
     end
     

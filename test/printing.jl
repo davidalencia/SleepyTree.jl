@@ -31,7 +31,7 @@ import Base:Exception
                 @test string(x) == "x₁"
                 @test string(y) == "x₂"
                 @test string(2y) == "2x₂" 
-                @test string(x-y) == "$(var(1,1))-$(var(2,1))" broken=true
+                @test string(x-y) == "$(var(1,1))-$(var(2,1))"
             end
         end
     end

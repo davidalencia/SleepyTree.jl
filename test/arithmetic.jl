@@ -2,13 +2,13 @@
     @testset "SleepyTree + SleepyTree" begin
         @testset "nvars=1, grad=1" begin
             x, = setvariables(1,1,Int)
-            @test string(x+x) == "2$(var(1,1))" broken=true
-            @test reduce(+, [x for i in 1:10]) == x*10 broken=true
-            @test string(2x+3x) == "5$(var(1,1))" broken=true
+            @test string(x+x) == "2$(var(1,1))" 
+            @test reduce(+, [x for i in 1:10]) == x*10
+            @test string(2x+3x) == "5$(var(1,1))"
         end
         @testset "nvars=2, grad=1" begin
             x,y = setvariables(2,1,Int)
-            @test string(x+y) == "$(var(1,1))+$(var(2,1))" broken=true
+            @test string(x+y) == "$(var(1,1))+$(var(2,1))"
         end
         @testset "nvars=1, grad=2" begin
             x, = setvariables(1,2,Int)
@@ -30,7 +30,7 @@
         @testset "nvars=2, grad=1" begin
             x,y = setvariables(2,1,Int)
             @test string(y+1) == "1+$(var(2,1))"
-            @test string(x+y+1) == "1+$(var(1,1))+$(var(2,1))" broken=true
+            @test string(x+y+1) == "1+$(var(1,1))+$(var(2,1))" 
         end
         @testset "nvars=3, grad=4" begin 
             x,y,z = setvariables(3,4,Int)
@@ -47,13 +47,13 @@ end
     @testset "SleepyTree - SleepyTree" begin
         @testset "nvars=1, grad=1" begin
             x, = setvariables(1,1,Int)
-            @test string(x-x) == "0" broken=true
-            @test string(3x-x) == "2$(var(1,1))" broken=true
-            @test string(x-3x) == "-2$(var(1,1))" broken=true
+            @test string(x-x) == "0" 
+            @test string(3x-x) == "2$(var(1,1))"
+            @test string(x-3x) == "-2$(var(1,1))"
         end
         @testset "nvars=2, grad=1" begin
             x,y = setvariables(2,1,Int)
-            @test string(x-y) == "$(var(1,1))-$(var(2,1))" broken=true
+            @test string(x-y) == "$(var(1,1))-$(var(2,1))"
         end
         @testset "nvars=1, grad=2" begin
             x, = setvariables(1,2,Int)
@@ -69,13 +69,13 @@ end
     @testset "SleepyTree - Number" begin
         @testset "nvars=1, grad=1" begin
             x, = setvariables(1,1,Int)
-            @test string(x-x) == "0" broken=true
-            @test string(3x-x) == "2$(var(1,1))" broken=true
-            @test string(x-3x) == "-2$(var(1,1))" broken=true
+            @test string(x-x) == "0"
+            @test string(3x-x) == "2$(var(1,1))"
+            @test string(x-3x) == "-2$(var(1,1))"
         end
         @testset "nvars=2, grad=1" begin
             x,y = setvariables(2,1,Int)
-            @test string(x-y) == "$(var(1,1))-$(var(2,1))" broken=true
+            @test string(x-y) == "$(var(1,1))-$(var(2,1))"
         end
         @testset "nvars=1, grad=2" begin
             x, = setvariables(1,2,Int)
