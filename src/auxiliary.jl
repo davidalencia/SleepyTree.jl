@@ -10,9 +10,9 @@
 end 
 
 @generated function zeroleafs(leafs, vars, ::Val{g}, it) where{g}
-    exs = Array{Expr}(undef, g+1)
+    exs = Array{Expr}(undef, g+2)
     exs[1] = :(z = deepcopy(leafs))
-    for i in 1:g
+    for i in 1:(g+1)
         exs[i+1] = :(z = _zeroleafs(z, vars, it[$i]))
     end
     

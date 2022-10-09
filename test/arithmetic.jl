@@ -127,7 +127,7 @@ end
     @testset "SleepyTree * Number" begin
         @testset "nvars=1, grad=1" begin 
             x, = setvariables(1,1,Int)
-            @test string(x*4) == "4$(var(1,1))" broken=true
+            @test string(x*4) == "4$(var(1,1))"
         end
         @testset "nvars=2, grad=4" begin 
             x,y = setvariables(2,4,Int)
