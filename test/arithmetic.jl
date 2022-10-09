@@ -91,21 +91,21 @@ end
     @testset "- SleepyTree" begin
         @testset "nvars=1, grad=1" begin
             x, = setvariables(1,1,Int)
-            @test string(-x) == "-$(var(1,1))" broken=true
+            @test string(-x) == "-$(var(1,1))"
         end
         @testset "nvars=2, grad=1" begin
             x,y = setvariables(2,1,Int)
-            @test string(-y) == "-$(var(2,1))" broken=true
+            @test string(-y) == "-$(var(2,1))"
         end
         @testset "nvars=1, grad=2" begin
             x, = setvariables(1,2,Int)
-            @test string(-x) == "-$(var(1,1))" broken=true
+            @test string(-x) == "-$(var(1,1))"
         end
         @testset "nvars=3, grad=4" begin 
             x,y,z = setvariables(3,4,Int)
-            @test string(-x) == "-$(var(1,1))" broken=true
-            @test string(-y) == "-$(var(2,1))" broken=true
-            @test string(-z) == "-$(var(3,1))" broken=true
+            @test string(-x) == "-$(var(1,1))"
+            @test string(-y) == "-$(var(2,1))"
+            @test string(-z) == "-$(var(3,1))"
         end
     end
 end
@@ -157,8 +157,8 @@ end
     end
     @testset "Sum and Sub" begin
         x,y, = setvariables(2,4,Int)
-        @test string(x+(-y)) == "$(var(1,1))-$(var(2,1))" broken=true
-        @test string(x+(-y)-y+x) == "2$(var(1,1))-2$(var(2,1))" broken=true
+        @test string(x+(-y)) == "$(var(1,1))-$(var(2,1))"
+        @test string(x+(-y)-y+x) == "2$(var(1,1))-2$(var(2,1))"
     end
     @testset "Power and Sum" begin
         x,y, = setvariables(2,4,Int)
